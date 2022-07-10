@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name        Open GitHub Repo in VSCode
 // @description Open GitHub Repo in vscode.dev
-// @version     0.2.2
+// @version     0.2.3
+// @author      bowencool
 // @license     MIT
 // @include     https://github.com/*
 // @icon        https://www.google.com/s2/favicons?sz=64&domain=vscode.dev
-// @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+// @supportURL  https://github.com/bowencool/Tampermonkey-Scripts/issues
+// @homepageURL https://greasyfork.org/zh-CN/scripts/447653-open-github-repo-in-vscode
 // @grant       none
 // ==/UserScript==
 
