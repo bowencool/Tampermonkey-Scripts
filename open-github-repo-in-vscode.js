@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name        Open GitHub Repo in VSCode
 // @description Open GitHub Repo in vscode.dev
-// @version     0.1.1
+// @version     0.2.0
 // @license     MIT
 // @include     https://github.com/*
 // @icon        https://www.google.com/s2/favicons?sz=64&domain=vscode.dev
+// @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @grant       none
 // ==/UserScript==
 
@@ -56,18 +57,23 @@ function insertButton() {
 			</defs>
 		</svg>`;
 
-  const insertElem = document.querySelector(".file-navigation > .flex-auto");
+  const siblingButton = document.querySelector("[data-hotkey=t]");
 
   const a = document.createElement('a');
   a.className = `ghiv-link btn mr-2 tooltipped tooltipped-n`;
-  a.href = `https://open.vscode.dev${window.location.pathname}`;
-  a.innerHTML = `${vsCodeIcon}&nbsp;&nbsp;Open in VS Code`;
   // a.innerText = "Open in VS Code";
-  a.target = "_blank";
-  a.ref = "noopener noreferrer";
-  a.setAttribute("aria-label", "Open this repo in VS Code");
+  a.setAttribute("aria-label", "Open in VS Code");
+  a.innerHTML = `${vsCodeIcon}&nbsp;&nbsp;Open in VS Code`;
+  // a.href = "javascript: void 0;"
+  // a.href = `https://open.vscode.dev${window.location.pathname}`;
+  // a.ref = "noopener noreferrer";
+  // a.target = "_blank";
+  a.addEventListener('click', (e) => {
+    e.preventDefault()
+    window.open(`https://open.vscode.dev${window.location.pathname}`)
+  })
 
-  insertElem.after(a);
+  siblingButton.before(a);
 }
 
 document.addEventListener('pjax:complete', function () { insertButton(); })
