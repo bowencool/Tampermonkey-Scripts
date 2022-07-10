@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto dark
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://dida365.com/
+// @version      0.2
 // @description  switch dark theme follow the system
 // @author       You
 // @match        https://dida365.com/webapp/
