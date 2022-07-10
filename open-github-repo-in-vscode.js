@@ -1,5 +1,6 @@
 // ==UserScript==
-// @name        Open GitHub Repo in vscode.dev
+// @name        Open GitHub Repo in VSCode
+// @description Open GitHub Repo in vscode.dev
 // @version     0.1.1
 // @license     MIT
 // @include     https://github.com/*
