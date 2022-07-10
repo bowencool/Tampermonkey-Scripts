@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
 // @namespace    https://dida365.com/
-// @version      0.3.2
+// @version      0.3.3
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @author       https://github.com/bowencool
 // @match        https://dida365.com/webapp/
