@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Auto dark
+// @name         Auto dark 自动深色模式
 // @namespace    https://dida365.com/
-// @version      0.2
-// @description  switch dark theme follow the system
+// @version      0.3.1
+// @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @author       You
 // @match        https://dida365.com/webapp/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dida365.com
