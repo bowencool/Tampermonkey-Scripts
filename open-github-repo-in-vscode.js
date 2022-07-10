@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Open GitHub Repo in VSCode
 // @description Open GitHub Repo in vscode.dev
-// @version     0.2.1
+// @version     0.2.2
 // @license     MIT
 // @include     https://github.com/*
 // @icon        https://www.google.com/s2/favicons?sz=64&domain=vscode.dev
@@ -57,8 +57,6 @@ function insertButton() {
 			</defs>
 		</svg>`;
 
-  const siblingButton = document.querySelector("[data-hotkey=t]");
-
   const a = document.createElement('a');
   a.className = `btn ml-2 d-none d-md-block`;
   // a.innerText = "Open in VS Code";
@@ -73,7 +71,13 @@ function insertButton() {
     window.open(`https://open.vscode.dev${window.location.pathname}`)
   })
 
-  siblingButton.before(a);
+
+  const siblingButton = document.querySelector("[data-hotkey=t]");
+  if (siblingButton) {
+    siblingButton.before(a);
+  } else {
+    document.querySelector(".file-navigation > .flex-auto").after(a);
+  }
 }
 
 document.addEventListener('pjax:complete', function () { insertButton(); })
