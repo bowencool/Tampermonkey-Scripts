@@ -7,7 +7,7 @@
 // @include     https://github.com/*
 // @icon        https://www.google.com/s2/favicons?sz=64&domain=vscode.dev
 // @supportURL  https://github.com/bowencool/Tampermonkey-Scripts/issues
-// @homepageURL https://greasyfork.org/zh-CN/scripts/447653-open-github-repo-in-vscode
+// @homepageURL https://greasyfork.org/scripts/447653
 // @grant       none
 // ==/UserScript==
 
