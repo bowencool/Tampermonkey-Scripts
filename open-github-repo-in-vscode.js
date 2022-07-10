@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name        Open GitHub Repo in vscode.dev
-// @version     0.1.0
+// @version     0.1.1
 // @license     MIT
 // @include     https://github.com/*
 // @icon        https://www.google.com/s2/favicons?sz=64&domain=vscode.dev
 // @grant       none
-// @icon        https://github.githubassets.com/pinned-octocat.svg
 // ==/UserScript==
 
 (() => {
