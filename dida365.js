@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      0.3.8
+// @version      0.3.9
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp/
@@ -21,14 +21,14 @@
 
   function toggle(isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches) {
     /* 有两个事件会触发，而且有循环，必须加判断 */
-    const dataTheme = document.body.getAttribute("data-theme")
-    console.log({ isDarkMode, dataTheme })
+    const currentTheme = document.body.getAttribute("data-theme")
+    console.log({ isDarkMode, currentTheme })
     if (isDarkMode) {
-      if (dataTheme === "night-dark-theme") return
+      if (currentTheme === "night-dark-theme") return
       document.body.setAttribute("data-theme", "night-dark-theme")
       document.body.classList.add("dark")
     } else {
-      if (dataTheme !== "night-dark-theme") return
+      if (currentTheme !== "night-dark-theme") return
       document.body.setAttribute("data-theme", "white-theme")
       document.body.classList.remove("dark")
     }

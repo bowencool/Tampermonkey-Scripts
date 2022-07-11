@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         antd 官方文档自动深色模式
-// @version      0.1.0
+// @version      0.1.1
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://ant.design/
 // @match        https://ant.design/components/*
@@ -17,15 +17,15 @@
 
   function toggle(isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches) {
     const url = new URL(location.href)
-    const themeInQuery = url.searchParams.get('theme')
+    const currentTheme = url.searchParams.get('theme')
 
-    console.log({ isDarkMode, themeInQuery })
+    console.log({ isDarkMode, currentTheme })
     if (isDarkMode) {
-      if (themeInQuery === "dark") return
+      if (currentTheme === "dark") return
       url.searchParams.set("theme", "dark")
       location.href = url
     } else {
-      if (themeInQuery !== "dark") return
+      if (currentTheme !== "dark") return
       url.searchParams.delete("theme")
       location.href = url
     }
