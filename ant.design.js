@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         antd 官方文档自动深色模式
-// @version      0.1.2
+// @version      0.1.3
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://ant.design/
 // @match        https://ant.design/*
