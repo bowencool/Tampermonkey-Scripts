@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         antd 官方文档自动深色模式
-// @version      0.1.4
+// @version      0.1.5
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://ant.design/
 // @match        https://ant.design/*
@@ -9,6 +9,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=ant.design
 // @author       bowencool
 // @license      MIT
+// @homepageURL  https://greasyfork.org/scripts/447698
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @grant        none
 // ==/UserScript==
