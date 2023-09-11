@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Teams自动深色模式
-// @version      0.1.0
+// @version      0.1.1
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://teams.microsoft.com/
 // @match        https://teams.microsoft.com/_*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=teams.microsoft.com
+// @icon         https://statics.teams.cdn.office.net/hashed/favicon/prod/favicon-32x32-4102f07.png
 // @author       bowencool
 // @license      MIT
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
