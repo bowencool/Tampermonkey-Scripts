@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      0.3.13
+// @version      0.3.14
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式，使用前先在页面上把主题设置成夜间
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp*
@@ -13,24 +13,28 @@
 // ==/UserScript==
 
 (function () {
-  'use strict';
+  "use strict";
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    toggle(e.matches);
-  });
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      toggle(e.matches);
+    });
 
-  function toggle(isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  function toggle(
+    isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
     /* 有两个事件会触发，而且有循环，必须加判断 */
-    const currentTheme = document.body.getAttribute("data-theme")
-    console.log({ isDarkMode, currentTheme })
+    const currentTheme = document.body.getAttribute("data-theme");
+    console.log({ isDarkMode, currentTheme });
     if (isDarkMode) {
-      if (currentTheme === "night-dark-theme") return
-      document.body.setAttribute("data-theme", "night-dark-theme")
-      document.body.classList.add("dark")
+      if (currentTheme === "night-dark-theme") return;
+      document.body.setAttribute("data-theme", "night-dark-theme");
+      document.body.classList.add("dark");
     } else {
-      if (currentTheme !== "night-dark-theme") return
-      document.body.setAttribute("data-theme", "white-theme")
-      document.body.classList.remove("dark")
+      if (currentTheme !== "night-dark-theme") return;
+      document.body.setAttribute("data-theme", "white-theme");
+      document.body.classList.remove("dark");
     }
   }
   /*
@@ -43,17 +47,19 @@
 */
   const observer = new MutationObserver(() => {
     /* 页面半身是异步设置的，太傻逼了 */
-    console.log(
-      'attr changed',
-      {
-        className: document.body.className,
-        dataTheme: document.body.getAttribute("data-theme")
-      }
-    )
+    const dataTheme = document.body.getAttribute("data-theme");
+    if (!dataTheme) return;
+    console.log("attr changed", {
+      className: document.body.className,
+      dataTheme,
+    });
     toggle();
     observer.disconnect();
-    console.log('disconnected.');
-  })
-  observer.observe(document.body, { attributes: true, childList: false, subtree: false })
-
+    console.log("disconnected.");
+  });
+  observer.observe(document.body, {
+    attributes: true,
+    childList: false,
+    subtree: false,
+  });
 })();
