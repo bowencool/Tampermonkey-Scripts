@@ -2,10 +2,9 @@
 // @name         AI Translation on crowdin
 // @description  add extra buttons to translate with AI on crowdin, support DeepL X and OpenAI
 // @namespace    https://crowdin.com/
-// @version      0.3.0
+// @version      0.3.1
 // @author       bowencool
 // @license      MIT
-// @homepageURL  https://greasyfork.org/scripts/447698
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @match        https://crowdin.com/translate/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=crowdin.com
