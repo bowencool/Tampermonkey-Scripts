@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Playback Speed Buttons
 // @description  Adds playback speed buttons to youtube player control bar.
-// @version      0.1.3
+// @version      0.2.0
 // @license      MIT
 // @author       bowencool
 // @match        https://www.youtube.com/watch*
@@ -34,18 +34,29 @@ function waitForElementToExist(selector) {
   });
 }
 
-function setPlayerSpeed(newSpeed) {
-  document.getElementsByClassName("html5-main-video")[0].playbackRate =
-    newSpeed;
-}
 function insertStyle() {
   const head = document.head;
   const style = document.createElement("style");
   style.innerHTML = `
 .speed-button {
-
+  position: relative;
+  top: -20px;
+  width: min-content!important;
+  margin: 0 2px;
 }
-.speed-button.active, .speed-button:hover {
+.speed-button.active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 3px;
+  border-radius: 3px;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  background-color: #f00;
+  color: white;
+}
+.speed-button:hover {
   color: white;
 }
   `;
@@ -54,17 +65,29 @@ function insertStyle() {
 }
 async function main() {
   const menuR = await waitForElementToExist(".ytp-right-controls");
-  console.log({ menuR });
+  const video = await waitForElementToExist(".html5-main-video");
+  console.log({ menuR, video });
   insertStyle();
-  if (typeof menuR !== "undefined" && menuR !== null) {
-    [2, 1.5, 1.25, 1, 0.75, 0.5].forEach((speed) => {
+  const currentPlaybackRate = video.playbackRate;
+  [2, 1.5, 1.25, 1, 0.75, 0.5].forEach((speed) => {
+    try {
       const button = document.createElement("button");
-      button.innerText = `x${speed}`;
-      button.classList.add("ytp-button speed-button");
-      button.onclick = () => setPlayerSpeed(speed);
+      button.innerText = `ⅹ${speed}`;
+      button.classList.add("ytp-button", "speed-button");
+      if (currentPlaybackRate === speed) {
+        button.classList.add("active");
+      }
+      button.onclick = () => {
+        video.playbackRate = speed;
+        document
+          .querySelectorAll(".speed-button")
+          .forEach((b) => b.classList.remove("active"));
+        button.classList.add("active");
+      };
       menuR.prepend(button);
-      console.log(button);
-    });
-  }
+    } catch (error) {
+      console.error(error);
+    }
+  });
 }
 main();
