@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Teams自动深色模式
-// @version      0.1.1
-// @description  根据系统设置自动切换深色模式，深色用的是官方的样式
+// @name         Microsoft Teams auto dark mode
+// @version      0.1.2
+// @description  Automatically switch the dark mode according to the system settings, which uses the official style
 // @namespace    https://teams.microsoft.com/
 // @match        https://teams.microsoft.com/_*
 // @icon         https://statics.teams.cdn.office.net/hashed/favicon/prod/favicon-32x32-4102f07.png
