@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Playback Speed Buttons
 // @description  Adds playback speed buttons to youtube player control bar.
-// @version      0.2.0
+// @version      0.3.0
 // @license      MIT
 // @author       bowencool
 // @match        https://www.youtube.com/watch*
@@ -68,7 +68,15 @@ async function main() {
   const video = await waitForElementToExist(".html5-main-video");
   console.log({ menuR, video });
   insertStyle();
-  const currentPlaybackRate = video.playbackRate;
+  const storedPlaybackRate = parseFloat(
+    sessionStorage.getItem("playback-rate"),
+    10
+  );
+
+  let currentPlaybackRate = video.playbackRate;
+  if (storedPlaybackRate > 0) {
+    currentPlaybackRate = video.playbackRate = storedPlaybackRate;
+  }
   [2, 1.5, 1.25, 1, 0.75, 0.5].forEach((speed) => {
     try {
       const button = document.createElement("button");
@@ -83,6 +91,7 @@ async function main() {
           .querySelectorAll(".speed-button")
           .forEach((b) => b.classList.remove("active"));
         button.classList.add("active");
+        sessionStorage.setItem("playback-rate", speed);
       };
       menuR.prepend(button);
     } catch (error) {
