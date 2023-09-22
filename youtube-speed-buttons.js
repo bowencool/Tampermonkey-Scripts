@@ -39,7 +39,7 @@ function setPlayerSpeed(newSpeed) {
     newSpeed;
 }
 function insertStyle() {
-  const header = document.header;
+  const head = document.head;
   const style = document.createElement("style");
   style.innerHTML = `
 .speed-button {
@@ -49,7 +49,7 @@ function insertStyle() {
   color: white;
 }
   `;
-  header.appendChild(style);
+  head.appendChild(style);
   console.log({ style });
 }
 async function main() {
