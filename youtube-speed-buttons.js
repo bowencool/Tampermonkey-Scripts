@@ -63,6 +63,7 @@ async function main() {
       button.classList.add("ytp-button speed-button");
       button.onclick = () => setPlayerSpeed(speed);
       menuR.prepend(button);
+      console.log(button);
     });
   }
 }
