@@ -2,7 +2,7 @@
 // @name         AI Translation on crowdin
 // @description  add extra buttons to translate with AI on crowdin, support DeepL X and OpenAI
 // @namespace    https://crowdin.com/
-// @version      0.2
+// @version      0.2.1
 // @author       bowencool
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/447698
@@ -24,6 +24,7 @@ function insertButton() {
   // console.log(sourceContainer);
   const button = document.createElement("button");
   button.innerText = "DeepL Translate";
+  button.classList.add('btn');
 
   button.addEventListener("click", () => {
       const sourceText = sourceContainer.innerText;
@@ -51,6 +52,8 @@ function insertButton() {
 
   const button2 = document.createElement("button");
   button2.innerText = "OpenAI Translate";
+  button2.classList.add('btn');
+  button2.style.marginLeft = '10px';
 
   button2.addEventListener("click", () => {
       const sourceText = sourceContainer?.innerText;
