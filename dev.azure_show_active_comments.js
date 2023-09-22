@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PR 默认显示 Active Comments
-// @version      0.1.0
+// @version      0.1.1
 // @description  默认显示 active comments，不用每次都点一下
 // @namespace    https://teams.microsoft.com/
 // @match        https://dev.azure.com/*/pullrequest/*
