@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         PR 默认显示 Active Comments
-// @version      0.1.1
+// @version      0.1.2
 // @description  默认显示 active comments，不用每次都点一下
-// @namespace    https://teams.microsoft.com/
+// @namespace    https://dev.azure.com/
 // @match        https://dev.azure.com/*/pullrequest/*
 // @icon         https://cdn.vsassets.io/content/icons/favicon.ico
 // @author       bowencool
