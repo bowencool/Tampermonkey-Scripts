@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Azure devops auto dark mode
-// @version      0.1.0
+// @version      0.1.1
 // @description  Automatically switch the dark mode according to the system settings, which uses the official style
 // @namespace    https://dev.azure.com/
 // @match        https://dev.azure.com/*
@@ -49,7 +49,7 @@
       (
         await waitForElementToExist("#theme-ms-vss-web-vsts-theme-dark")
       ).click();
-      (await waitForElementToExist('#__bolt-close-button-24')).click();
+      (await waitForElementToExist('.theme-panel [aria-label="Close"]')).click();
     } else {
       if (!currentThemeIsDark) return;
       (await waitForElementToExist('[aria-label="User settings"]')).click();
@@ -57,7 +57,7 @@
       (
         await waitForElementToExist("#theme-ms-vss-web-vsts-theme")
       ).click();
-      (await waitForElementToExist('#__bolt-close-button-24')).click();
+      (await waitForElementToExist('.theme-panel [aria-label="Close"]')).click();
     }
   }
   toggle();
