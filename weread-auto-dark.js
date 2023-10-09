@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         微信读书自动深色模式
-// @version      0.1.2
+// @version      0.1.3
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://weread.qq.com/
 // @match        https://weread.qq.com/*
@@ -43,25 +43,25 @@
     console.log({ isDarkMode, currentThemeIsWhite });
     if (isDarkMode) {
       if (currentThemeIsWhite) {
-        // if (location.pathname.startsWith("/web/reader")) {
-        //   const button = await waitForElementToExist(
-        //     ".readerControls_item.dark"
-        //   );
-        //   button.click();
-        // } else {
-        document.body.classList.remove("wr_whiteTheme");
-        // }
+        document.cookie = "wr_theme=dark; path=/; domain=.weread.qq.com;";
+        if (location.pathname.startsWith("/web/reader")) {
+          // const button = await waitForElementToExist(
+          //   ".readerControls_item.dark"
+          // );
+          // button.click();
+          location.reload();
+        } else {
+          document.body.classList.remove("wr_whiteTheme");
+        }
       }
     } else {
       if (!currentThemeIsWhite) {
-        // if (location.pathname.startsWith("/web/reader")) {
-        //   const button = await waitForElementToExist(
-        //     ".readerControls_item.white"
-        //   );
-        //   button.click();
-        // } else {
-        document.body.classList.add("wr_whiteTheme");
-        // }
+        document.cookie = "wr_theme=white; path=/; domain=.weread.qq.com;";
+        if (location.pathname.startsWith("/web/reader")) {
+          location.reload();
+        } else {
+          document.body.classList.add("wr_whiteTheme");
+        }
       }
     }
   }
