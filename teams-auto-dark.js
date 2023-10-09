@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Microsoft Teams auto dark mode
-// @version      0.1.2
+// @version      0.1.3
 // @description  Automatically switch the dark mode according to the system settings, which uses the official style
 // @namespace    https://teams.microsoft.com/
 // @match        https://teams.microsoft.com/_*
@@ -37,7 +37,6 @@
   async function toggle(
     isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
   ) {
-    /* 有两个事件会触发，而且有循环，必须加判断 */
     const link = document.querySelector('#themed-stylesheet[rel="stylesheet"]');
     const url = link.href;
     const currentThemeIsDark = url.includes("dark");
