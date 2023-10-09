@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      0.3.14
+// @version      0.3.15
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式，使用前先在页面上把主题设置成夜间
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp*
