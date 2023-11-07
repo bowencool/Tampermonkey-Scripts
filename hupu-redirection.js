@@ -2,11 +2,14 @@
 // @name         hupu redirection
 // @description  redirect to desktop version
 // @namespace    hupu
-// @version      0.2
+// @version      0.2.1
 // @author       bowencool
 // @match        https://m.hupu.com/bbs/*.html
 // @icon         http://hupu.com/favicon.ico
 // @grant        none
+// @license      MIT
+// @homepageURL  https://greasyfork.org/scripts/447649
+// @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @run-at       document-start
 // ==/UserScript==
 
