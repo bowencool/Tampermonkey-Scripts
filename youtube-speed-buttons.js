@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         YouTube Playback Speed Buttons
 // @description  Adds playback speed buttons to youtube player control bar.
-// @version      0.3.1
+// @version      0.3.2
 // @license      MIT
 // @author       bowencool
-// @match        https://www.youtube.com/watch*
+// @match        https://www.youtube.com/*
 // @namespace    https://www.youtube.com/
 // @author       bowencool
 // @license      MIT
