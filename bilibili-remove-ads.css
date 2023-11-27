@@ -1,0 +1,29 @@
+/* ==UserStyle==
+@name         bilibili 自用去广告
+@version      0.1.1
+@description  Automatically switch the dark mode according to the system settings, which uses the official style
+@author       bowencool
+@license      MIT
+@namespace    bilibili
+@supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+==/UserStyle== */
+
+@-moz-document domain("www.bilibili.com") {
+  .note-content .preview-editor * {
+    user-select: text;
+  }
+  [role="caption"] {
+    user-select: text !important;
+  }
+  .pop-live-small-mode,
+  [data-loc-id],
+  .bili-vote.bili-show,
+  .video-page-special-card-small {
+    display: none !important;
+  }
+
+  :is(.bili-video-card, .feed-card):not(:has(a[href^="https://www.bilibili.com/video"]))
+  {
+    display: none !important;
+  }
+}
