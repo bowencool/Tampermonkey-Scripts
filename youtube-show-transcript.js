@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Show transcript by default
-// @version      0.1.0
+// @version      0.1.1
 // @description  Automatically show transcript by default
 // @namespace    https://youtube.com/
 // @match        https://www.youtube.com/watch*
@@ -33,10 +33,9 @@ function waitForElementToExist(selector) {
 
 (async function () {
   "use strict";
-  const transcripts = await waitForElementToExist(
+  const transcript = await waitForElementToExist(
     '[target-id="engagement-panel-searchable-transcript"]'
   );
-  const transcript = transcripts[0];
   transcript.setAttribute("visibility", "ENGAGEMENT_PANEL_VISIBILITY_EXPANDED");
   console.log("transcript should show up now...");
 })();
