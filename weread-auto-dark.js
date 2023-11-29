@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         微信读书自动深色模式
-// @version      0.1.3
+// @version      0.1.4
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://weread.qq.com/
 // @match        https://weread.qq.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=weread.qq.com
 // @author       bowencool
 // @license      MIT
-// @homepageURL  https://greasyfork.org/scripts/447649
+// @homepageURL  https://greasyfork.org/scripts/477034
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @grant        none
 // ==/UserScript==
