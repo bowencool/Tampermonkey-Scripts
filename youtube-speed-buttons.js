@@ -35,14 +35,14 @@ function waitForElementToExist(selector) {
 }
 
 function insertStyle() {
-  const path = window.location.pathname;
-  const isEmbed = path.startsWith("/embed");
+  // const path = window.location.pathname;
+  // const isEmbed = path.startsWith("/embed");
   const head = document.head;
   const style = document.createElement("style");
   style.innerHTML = `
 .speed-button {
   position: relative;
-  top: ${isEmbed ? "-16px" : "-20px"};
+  float: left;
   width: max-content!important;
   margin: 0 2px;
 }
