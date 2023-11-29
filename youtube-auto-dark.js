@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         YouTube auto dark mode
-// @version      0.4.4
+// @version      0.4.5
 // @description  Automatically switch the dark mode according to the system settings, which uses the official style
 // @namespace    https://youtube.com/
 // @match        https://www.youtube.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @author       bowencool
 // @license      MIT
+// @homepageURL  https://greasyfork.org/scripts/460040
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @grant        none
 // ==/UserScript==

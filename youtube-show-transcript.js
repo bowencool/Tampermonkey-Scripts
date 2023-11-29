@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Show transcript by default
-// @version      0.1.1
+// @version      0.1.2
 // @description  Automatically show transcript by default
 // @namespace    https://youtube.com/
 // @match        https://www.youtube.com/watch*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @author       bowencool
 // @license      MIT
+// @homepageURL  https://greasyfork.org/scripts/480993
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @grant        none
 // ==/UserScript==
