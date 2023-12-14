@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @name:en      Show subtitle of Bilibili video by default
-// @version      0.1.9
+// @version      0.1.10
 // @description:en  Automatically display Bilibili video subtitles/transcript by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
@@ -124,9 +124,7 @@ function parseTime(t) {
   const video = await waitForElementToExist("video");
   const transcriptBox = document.createElement("div");
   transcriptBox.className = "transcript-box";
-  const danmukuBox = await waitForElementToExist("#danmukuBox");
   // const oldfanfollowEntry = await waitForElementToExist("#oldfanfollowEntry");
-  danmukuBox.parentNode.insertBefore(transcriptBox, danmukuBox);
   video.addEventListener("timeupdate", () => {
     const currentTime = video.currentTime;
     const lastActiveLine = document.querySelector(".transcript-line.active");
@@ -157,6 +155,8 @@ function parseTime(t) {
   });
   // B站 页面是SSR的，如果插入过早
   await showTranscript(subtitles[0]);
+  const danmukuBox = await waitForElementToExist("#danmukuBox");
+  danmukuBox.parentNode.insertBefore(transcriptBox, danmukuBox);
 
   async function showTranscript(subtitleInfo) {
     console.log("showTranscript", subtitleInfo);
