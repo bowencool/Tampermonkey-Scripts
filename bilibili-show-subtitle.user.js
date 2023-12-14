@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @name:en      Show subtitle of Bilibili video by default
-// @version      0.1.4
+// @version      0.1.6
 // @description:en  Automatically display Bilibili video subtitles/transcript by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
@@ -122,6 +122,31 @@ function parseTime(t) {
   // const danmukuBox = await waitForElementToExist("#danmukuBox");
   const oldfanfollowEntry = await waitForElementToExist("#oldfanfollowEntry");
   oldfanfollowEntry.parentNode.insertBefore(transcriptBox, oldfanfollowEntry);
+  video.addEventListener("timeupdate", () => {
+    const currentTime = video.currentTime;
+    const timeLinks = document.querySelectorAll(".transcript-line-time");
+
+    for (let i = 0; i < timeLinks.length; i++) {
+      const timeLink = timeLinks[i];
+      const from = +timeLink.getAttribute("data-from");
+      const to = +timeLink.getAttribute("data-to");
+      console.log(i, currentTime, from, to, timeLink.parentElement);
+      if (currentTime >= to || currentTime <= from) {
+        // Remove the 'active' class
+        if (timeLink.parentNode.classList.contains("active")) {
+          timeLink.parentNode.classList.remove("active");
+        }
+      }
+      if (currentTime > from && currentTime < to) {
+        const targetPosition =
+          timeLink.parentNode.offsetTop - transcriptBox.clientHeight * 0.5;
+        transcriptBox.scrollTo(0, targetPosition);
+        // Add the 'active' class to the current line
+        timeLink.parentNode.classList.add("active");
+        break;
+      }
+    }
+  });
   await showTranscript(subtitles[0]);
 
   async function showTranscript(subtitleInfo) {
@@ -129,14 +154,16 @@ function parseTime(t) {
     const { body: lines } = await fetch(
       subtitleInfo.subtitle_url.replace(/^\/\//, "https://")
     ).then((res) => res.json());
-
-    let lineMap = new Map();
+    console.log("lines", lines);
     for (let line of lines) {
       if (line.music && line.music > MUSIC_FILTER_RATE) {
         continue;
       }
       let timeLink = document.createElement("a");
       timeLink.className = "transcript-line-time";
+      timeLink.setAttribute("data-from", line.from);
+      timeLink.setAttribute("data-to", line.to);
+      // timeLink.setAttribute("data-index", line.index);
       timeLink.textContent = parseTime(line.from);
       timeLink.addEventListener("click", () => {
         video.currentTime = line.from;
@@ -150,37 +177,6 @@ function parseTime(t) {
 
       lineDiv.appendChild(span);
       transcriptBox.appendChild(lineDiv);
-
-      lineMap.set(line.from, lineDiv);
     }
-    let lastActiveLine = null;
-
-    video.addEventListener("timeupdate", () => {
-      let currentTime = video.currentTime;
-      console.log("currentTime", currentTime);
-      let keys = Array.from(lineMap.keys()).sort();
-      for (let i = 0; i < keys.length; i++) {
-        if (keys[i] > currentTime) {
-          if (i > 0) {
-            let targetLine = lineMap.get(keys[i - 1]);
-            let targetPosition =
-              targetLine.offsetTop - transcriptBox.clientHeight * 0.3;
-            transcriptBox.scrollTo(0, targetPosition);
-
-            // Remove the 'active' class from the last active line
-            if (lastActiveLine) {
-              lastActiveLine.classList.remove("active");
-            }
-
-            // Add the 'active' class to the current line
-            targetLine.classList.add("active");
-
-            // Update the last active line
-            lastActiveLine = targetLine;
-          }
-          break;
-        }
-      }
-    });
   }
 })();
