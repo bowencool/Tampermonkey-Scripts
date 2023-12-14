@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         自动显示 Bilibili 视频字幕
-// @name:en      Show subtitle of Bilibili video by default
-// @version      1.0.0
-// @description:en  Automatically display Bilibili video subtitles/transcript by default
+// @name         在侧边显示 Bilibili 视频字幕/文稿
+// @name:en      Show transcript of Bilibili video on the side
+// @version      1.0.1
+// @description:en  Automatically display Bilibili video transcript/subtitles/captions by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
 // @match        https://www.bilibili.com/video/*
