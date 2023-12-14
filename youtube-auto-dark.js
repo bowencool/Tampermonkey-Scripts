@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         YouTube auto dark mode
-// @version      0.4.5
+// @version      1.0.0
 // @description  Automatically switch the dark mode according to the system settings, which uses the official style
 // @namespace    https://youtube.com/
 // @match        https://www.youtube.com/*

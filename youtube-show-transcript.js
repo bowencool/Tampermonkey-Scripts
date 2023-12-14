@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Show transcript by default
-// @version      0.1.2
+// @version      1.0.0
 // @description  Automatically show transcript by default
 // @namespace    https://youtube.com/
 // @match        https://www.youtube.com/watch*

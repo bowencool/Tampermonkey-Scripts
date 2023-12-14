@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         微信读书自动深色模式
-// @version      0.1.4
+// @version      1.0.0
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://weread.qq.com/
 // @match        https://weread.qq.com/*
