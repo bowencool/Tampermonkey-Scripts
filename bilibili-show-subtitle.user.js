@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @name:en      Show subtitle of Bilibili video by default
-// @version      0.1.8
+// @version      0.1.9
 // @description:en  Automatically display Bilibili video subtitles/transcript by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
@@ -129,24 +129,28 @@ function parseTime(t) {
   danmukuBox.parentNode.insertBefore(transcriptBox, danmukuBox);
   video.addEventListener("timeupdate", () => {
     const currentTime = video.currentTime;
-    const timeLinks = document.querySelectorAll(".transcript-line-time");
+    const lastActiveLine = document.querySelector(".transcript-line.active");
+    const lineBoxes = lastActiveLine
+      ? [lastActiveLine, lastActiveLine.nextSibling]
+      : document.querySelectorAll(".transcript-line");
 
-    for (let i = 0; i < timeLinks.length; i++) {
-      const timeLink = timeLinks[i];
-      const from = +timeLink.getAttribute("data-from");
-      const to = +timeLink.getAttribute("data-to");
+    for (let i = 0; i < lineBoxes.length; i++) {
+      const currentLine = lineBoxes[i];
+      const from = +currentLine.getAttribute("data-from");
+      const to = +currentLine.getAttribute("data-to");
+      // console.log({ i, from, to, currentTime }, currentLine);
       if (currentTime >= to || currentTime <= from) {
         // Remove the 'active' class
-        if (timeLink.parentNode.classList.contains("active")) {
-          timeLink.parentNode.classList.remove("active");
+        if (currentLine.classList.contains("active")) {
+          currentLine.classList.remove("active");
         }
       }
       if (currentTime > from && currentTime < to) {
         const targetPosition =
-          timeLink.parentNode.offsetTop - transcriptBox.clientHeight * 0.5;
+          currentLine.offsetTop - transcriptBox.clientHeight * 0.5;
         transcriptBox.scrollTo(0, targetPosition);
         // Add the 'active' class to the current line
-        timeLink.parentNode.classList.add("active");
+        currentLine.classList.add("active");
         break;
       }
     }
@@ -166,8 +170,6 @@ function parseTime(t) {
       }
       let timeLink = document.createElement("a");
       timeLink.className = "transcript-line-time";
-      timeLink.setAttribute("data-from", line.from);
-      timeLink.setAttribute("data-to", line.to);
       // timeLink.setAttribute("data-index", line.index);
       timeLink.textContent = parseTime(line.from);
       timeLink.addEventListener("click", () => {
@@ -175,6 +177,8 @@ function parseTime(t) {
       });
       let lineDiv = document.createElement("div");
       lineDiv.className = "transcript-line";
+      lineDiv.setAttribute("data-from", line.from);
+      lineDiv.setAttribute("data-to", line.to);
       lineDiv.appendChild(timeLink);
       let span = document.createElement("span");
       span.className = "transcript-line-content";
