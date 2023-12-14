@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @name:en      Show subtitle of Bilibili video by default
-// @version      0.1.3
+// @version      0.1.4
 // @description:en  Automatically display Bilibili video subtitles/transcript by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
@@ -109,13 +109,12 @@ function parseTime(t) {
     curPage = 0;
   }
   const videoInfo = await request("/x/web-interface/view?bvid=" + bvid);
-  const data = await request(
-    `/x/player/v2?aid=${videoInfo.aid}&cid=${videoInfo.pages[curPage].cid}`
-  );
   const {
     subtitle: { subtitles = [] },
-  } = data;
-  console.log("subtitles", subtitles, data);
+  } = await request(
+    `/x/player/v2?aid=${videoInfo.aid}&cid=${videoInfo.pages[curPage].cid}`
+  );
+  console.log("subtitles", subtitles);
   if (subtitles.length == 0) return console.log("没有字幕");
   const video = await waitForElementToExist("video");
   const transcriptBox = document.createElement("div");
@@ -158,6 +157,7 @@ function parseTime(t) {
 
     video.addEventListener("timeupdate", () => {
       let currentTime = video.currentTime;
+      console.log("currentTime", currentTime);
       let keys = Array.from(lineMap.keys()).sort();
       for (let i = 0; i < keys.length; i++) {
         if (keys[i] > currentTime) {
