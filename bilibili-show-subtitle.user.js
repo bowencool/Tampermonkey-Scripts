@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @version      0.1.0
-// @description  自动显示 Bilibili 视频字幕
+// @description  Automatically display Bilibili video subtitles/transcript by default
 // @namespace    https://bilibili.com/
 // @match        https://www.bilibili.com/video/*
 // @icon         https://www.bilibili.com/favicon.ico
