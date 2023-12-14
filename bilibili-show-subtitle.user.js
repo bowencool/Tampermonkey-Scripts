@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @name:en      Show subtitle of Bilibili video by default
-// @version      0.1.6
+// @version      0.1.7
 // @description:en  Automatically display Bilibili video subtitles/transcript by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
@@ -130,7 +130,6 @@ function parseTime(t) {
       const timeLink = timeLinks[i];
       const from = +timeLink.getAttribute("data-from");
       const to = +timeLink.getAttribute("data-to");
-      console.log(i, currentTime, from, to, timeLink.parentElement);
       if (currentTime >= to || currentTime <= from) {
         // Remove the 'active' class
         if (timeLink.parentNode.classList.contains("active")) {
