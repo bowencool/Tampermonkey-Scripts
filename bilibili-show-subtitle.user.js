@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         自动显示 Bilibili 视频字幕
 // @name:en      Show subtitle of Bilibili video by default
-// @version      0.1.7
+// @version      0.1.8
 // @description:en  Automatically display Bilibili video subtitles/transcript by default
 // @description     默认自动显示Bilibili视频字幕/文稿
 // @namespace    https://bilibili.com/
@@ -48,6 +48,8 @@ async function request(url, options) {
     });
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 GM_addStyle(`
 .transcript-box {
   border: 1px solid #e1e1e1;
@@ -55,7 +57,7 @@ GM_addStyle(`
   padding: 12px 16px;
   max-height: 50vh;
   overflow: scroll;
-  margin: 20px 0;
+  margin-bottom: 20px;
   pointer-events: initial;
 }
 .transcript-line {
@@ -116,12 +118,15 @@ function parseTime(t) {
   );
   console.log("subtitles", subtitles);
   if (subtitles.length == 0) return console.log("没有字幕");
+
+  // B站页面是SSR的，如果插入过早，页面 js 检测到实际 Dom 和期望 Dom 不一致，会导致重新渲染
+  await sleep(1500);
   const video = await waitForElementToExist("video");
   const transcriptBox = document.createElement("div");
   transcriptBox.className = "transcript-box";
-  // const danmukuBox = await waitForElementToExist("#danmukuBox");
-  const oldfanfollowEntry = await waitForElementToExist("#oldfanfollowEntry");
-  oldfanfollowEntry.parentNode.insertBefore(transcriptBox, oldfanfollowEntry);
+  const danmukuBox = await waitForElementToExist("#danmukuBox");
+  // const oldfanfollowEntry = await waitForElementToExist("#oldfanfollowEntry");
+  danmukuBox.parentNode.insertBefore(transcriptBox, danmukuBox);
   video.addEventListener("timeupdate", () => {
     const currentTime = video.currentTime;
     const timeLinks = document.querySelectorAll(".transcript-line-time");
@@ -146,6 +151,7 @@ function parseTime(t) {
       }
     }
   });
+  // B站 页面是SSR的，如果插入过早
   await showTranscript(subtitles[0]);
 
   async function showTranscript(subtitleInfo) {
