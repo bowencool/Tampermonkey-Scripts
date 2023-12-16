@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在侧边显示 Bilibili 视频字幕/文稿
 // @name:en      Show transcript of Bilibili video on the side
-// @version      1.0.3
+// @version      1.0.4
 // @description:en  Automatically display Bilibili video subtitles/scripts by default, support click to jump, text selection, auto-scrolling.
 // @description     默认自动显示Bilibili视频字幕/文稿，支持点击跳转、文本选中、自动滚动。
 // @namespace    https://bilibili.com/
@@ -120,7 +120,7 @@ function parseTime(t) {
   if (subtitles.length == 0) return console.log("没有字幕");
 
   // B站页面是SSR的，如果插入过早，页面 js 检测到实际 Dom 和期望 Dom 不一致，会导致重新渲染
-  await sleep(1500);
+  await waitForElementToExist("img.bili-avatar-img")
   const video = await waitForElementToExist("video");
   const transcriptBox = document.createElement("div");
   transcriptBox.className = "transcript-box";
