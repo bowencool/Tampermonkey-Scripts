@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         bilibili 自用去广告
-@version      0.1.3
+@version      0.1.4
 @description  B 站去广告
 @author       bowencool
 @license      MIT
@@ -22,7 +22,7 @@
     display: none !important;
   }
 
-  :is(.bili-video-card, .feed-card):not(:has(a[href^="https://www.bilibili.com/video"]))
+  :is(.bili-video-card, .feed-card, .floor-single-card):not(:has(a[href^="https://www.bilibili.com/video"]))
   {
     display: none !important;
   }
