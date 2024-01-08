@@ -1,10 +1,11 @@
 /* ==UserStyle==
 @name         v2ex highlight links
-@version      1.0.0
+@version      1.0.1
 @namespace    v2ex.com
 @description  在帖子和回复中高亮链接。
 @author       bowencool
 @license      MIT
+@updateURL    https://github.com/bowencool/Tampermonkey-Scripts/raw/main/v2ex-highlight-links.user.css
 @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 ==/UserStyle== */
 
