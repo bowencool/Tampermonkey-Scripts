@@ -1,10 +1,11 @@
 /* ==UserStyle==
 @name         bilibili 自用去广告
-@version      0.1.6
+@version      0.1.7
 @description  B 站去广告
 @author       bowencool
 @license      MIT
 @namespace    bilibili.com
+@updateURL    https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/bilibili-remove-ads.user.css
 @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 ==/UserStyle== */
 
