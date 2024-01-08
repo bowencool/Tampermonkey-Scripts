@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         bilibili 自用去广告
-@version      0.1.5
+@version      0.1.6
 @description  B 站去广告
 @author       bowencool
 @license      MIT
@@ -17,12 +17,12 @@
   }
   .pop-live-small-mode,
   [data-loc-id],
-  .bili-vote.bili-show, // 投票
-  .bili-cmtime.bili-show, // 心动按钮
+  .bili-vote.bili-show, /* 投票 */
+  .bili-cmtime.bili-show, /* 心动按钮 */
   .video-page-special-card-small {
     display: none !important;
   }
-
+  /* 首页所有非视频卡片 */
   :is(.bili-video-card, .feed-card, .floor-single-card):not(:has(a[href^="https://www.bilibili.com/video"]))
   {
     display: none !important;
