@@ -2,10 +2,10 @@
 // @name         antd redirection
 // @description  重定向到国内镜像
 // @namespace    antd
-// @version      1.0.0
+// @version      1.0.1
 // @author       bowencool
 // @match        https://ant.design/*
-// @icon         https://ant-design.antgroup.com/favicon.ico
+// @icon         https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png
 // @grant        none
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/485132
