@@ -1,0 +1,23 @@
+/* ==UserStyle==
+@name         bilibili 宽屏
+@version      0.1.0
+@description  移除两侧空白，最大宽度播放视频
+@author       bowencool
+@license      MIT
+@namespace    bilibili.com
+@updateURL    https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/bilibili-wide-screen.user.css
+@supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+==/UserStyle== */
+
+@-moz-document url-prefix("https://www.bilibili.com/video/") {
+  .left-container {
+      width: initial !important;
+  }
+  #playerWrap {
+      height: initial !important;
+  }
+  #bilibili-player {
+      width: 100% !important;
+      height: auto !important;
+  }
+}
