@@ -118,7 +118,7 @@ async function showTranscript(subtitleInfo) {
     // timeLink.setAttribute("data-index", line.index);
     timeLink.textContent = parseTime(line.from);
     timeLink.addEventListener("click", () => {
-      video.currentTime = line.from;
+      document.querySelector("video").currentTime = line.from;
     });
     let lineDiv = document.createElement("div");
     lineDiv.className = "transcript-line";
