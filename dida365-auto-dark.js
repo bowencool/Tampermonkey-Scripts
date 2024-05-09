@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      1.0.2
+// @version      1.0.3
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp*
@@ -68,6 +68,7 @@
         )
       ).click();
       localStorage.setItem("appTheme", "night");
+      document.querySelector(".icon-sidebar-sync")?.parentElement.click();
       // document.body.setAttribute("data-theme", "night-dark-theme");
       // document.body.classList.add("dark");
     } else {
@@ -90,6 +91,7 @@
         )
       ).click();
       localStorage.setItem("appTheme", "grey");
+      document.querySelector(".icon-sidebar-sync")?.parentElement.click();
       // document.body.setAttribute("data-theme", "white-theme");
       // document.body.classList.remove("dark");
     }
