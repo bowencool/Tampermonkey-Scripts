@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         bilibili 自用去广告
-@version      0.1.7
+@version      0.1.8
 @description  B 站去广告
 @author       bowencool
 @license      MIT
@@ -18,7 +18,7 @@
   }
   .pop-live-small-mode,
   [data-loc-id],
-  .bili-vote.bili-show, /* 投票 */
+  /*.bili-vote.bili-show,  投票 */
   .bili-cmtime.bili-show, /* 心动按钮 */
   .video-page-special-card-small {
     display: none !important;
