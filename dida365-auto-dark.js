@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      1.0.4
+// @version      1.0.5
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp*
@@ -9,6 +9,7 @@
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/447649
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
 // @grant        none
 // ==/UserScript==
 
@@ -17,29 +18,6 @@
 
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  function waitForElementToExist(selector) {
-    return new Promise((resolve) => {
-      if (document.querySelector(selector)) {
-        console.log("resolved", selector, document.querySelector(selector));
-        return resolve(document.querySelector(selector));
-      }
-      console.log("wait for", selector);
-      const observer = new MutationObserver(() => {
-        const el = document.querySelector(selector);
-        if (el) {
-          resolve(el);
-          console.log("resolved", selector, el);
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(document.body, {
-        subtree: true,
-        childList: true,
-      });
-    });
   }
 
   async function toggle(
