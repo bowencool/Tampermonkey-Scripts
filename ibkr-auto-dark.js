@@ -9,8 +9,8 @@
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/000000
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
-// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts/shared/cookie.js
-// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts/shared/waitForElementToExist.js
+// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@f59cc91442dd34eb28e0d270486da5c7ac8d2d50/shared/cookie.js
+// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@f59cc91442dd34eb28e0d270486da5c7ac8d2d50/shared/waitForElementToExist.js
 // @grant        none
 // ==/UserScript==
 

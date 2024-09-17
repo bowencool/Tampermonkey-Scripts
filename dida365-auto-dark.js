@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      1.0.6
+// @version      1.0.7
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp*
@@ -9,7 +9,7 @@
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/447649
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
-// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts/shared/waitForElementToExist.js
+// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@f59cc91442dd34eb28e0d270486da5c7ac8d2d50/shared/waitForElementToExist.js
 // @grant        none
 // ==/UserScript==
 
