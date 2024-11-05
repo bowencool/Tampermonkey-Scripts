@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在侧边显示 Bilibili 视频字幕/文稿
 // @name:en      Show transcript of Bilibili video on the side
-// @version      2.1.0
+// @version      2.1.1
 // @description:en  Automatically display Bilibili video subtitles/scripts by default, support click to jump, text selection, auto-scrolling.
 // @description     默认自动显示Bilibili视频字幕/文稿，支持点击跳转、文本选中、自动滚动。
 // @namespace    https://bilibili.com/
@@ -11,7 +11,7 @@
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/482165
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
-// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@f59cc91442dd34eb28e0d270486da5c7ac8d2d50/shared/waitForElementToExist.js
+// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@b65b677146fdf0d0af884371a943d7f4a65f6ec8/shared/waitForElementToExist.js
 // @grant        GM_addStyle
 // ==/UserScript==
 
@@ -115,20 +115,16 @@ async function showTranscript(subtitleInfo) {
   }
 }
 
-function ensureSubtitleIsEnabled() {
-  return waitForElementToExist(
-    ".bpx-player-ctrl-subtitle .bpx-common-svg-icon"
-  ).then((btn) => {
-    btn.click();
-  });
-}
-
 async function main() {
   "use strict";
 
   // B站页面是SSR的，如果插入过早，页面 js 检测到实际 Dom 和期望 Dom 不一致，会导致重新渲染
   await waitForElementToExist("img.bili-avatar-img");
-  await ensureSubtitleIsEnabled();
+  waitForElementToExist(".bpx-player-ctrl-subtitle .bpx-common-svg-icon").then(
+    (btn) => {
+      btn.click();
+    }
+  );
   const video = await waitForElementToExist("video");
   video.addEventListener("timeupdate", () => {
     const currentTime = video.currentTime;
@@ -163,7 +159,18 @@ async function main() {
     for (const mutation of mutationsList) {
       if (mutation.type === "attributes" && mutation.attributeName === "src") {
         if (video.src) {
-          ensureSubtitleIsEnabled();
+          transcriptBox.innerHTML =
+            "开启字幕中...如果长时间无响应，请手动在视频上打开一次字幕";
+          waitForElementToExist(
+            ".bpx-player-ctrl-subtitle .bpx-common-svg-icon",
+            3000
+          )
+            .then((btn) => {
+              btn.click();
+            })
+            .catch(() => {
+              transcriptBox.innerHTML = "请手动打开字幕";
+            });
         }
       }
     }
