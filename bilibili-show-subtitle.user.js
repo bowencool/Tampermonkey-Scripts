@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在侧边显示 Bilibili 视频字幕/文稿
 // @name:en      Show transcript of Bilibili video on the side
-// @version      2.1.1
+// @version      2.1.2
 // @description:en  Automatically display Bilibili video subtitles/scripts by default, support click to jump, text selection, auto-scrolling.
 // @description     默认自动显示Bilibili视频字幕/文稿，支持点击跳转、文本选中、自动滚动。
 // @namespace    https://bilibili.com/
@@ -123,6 +123,9 @@ async function main() {
   waitForElementToExist(".bpx-player-ctrl-subtitle .bpx-common-svg-icon").then(
     (btn) => {
       btn.click();
+      setTimeout(() => {
+        btn.click();
+      }, 500);
     }
   );
   const video = await waitForElementToExist("video");
@@ -167,6 +170,9 @@ async function main() {
           )
             .then((btn) => {
               btn.click();
+              setTimeout(() => {
+                btn.click();
+              }, 500);
             })
             .catch(() => {
               transcriptBox.innerHTML = "请手动打开字幕";
