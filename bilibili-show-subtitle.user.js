@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         在侧边显示 Bilibili 视频字幕/文稿
 // @name:en      Show transcript of Bilibili video on the side
-// @version      1.1.2
+// @version      2.0.0
 // @description:en  Automatically display Bilibili video subtitles/scripts by default, support click to jump, text selection, auto-scrolling.
 // @description     默认自动显示Bilibili视频字幕/文稿，支持点击跳转、文本选中、自动滚动。
 // @namespace    https://bilibili.com/
@@ -11,28 +11,9 @@
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/482165
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
 // @grant        GM_addStyle
 // ==/UserScript==
-
-function waitForElementToExist(selector) {
-  return new Promise((resolve) => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector));
-    }
-
-    const observer = new MutationObserver(() => {
-      if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector));
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.body, {
-      subtree: true,
-      childList: true,
-    });
-  });
-}
 
 async function request(url, options) {
   return fetch(`https://api.bilibili.com${url}`, {
@@ -102,11 +83,10 @@ function parseTime(t) {
 
 const transcriptBox = document.createElement("div");
 transcriptBox.className = "transcript-box";
+transcriptBox.innerHTML = "请先在视频上打开一次字幕";
+
 async function showTranscript(subtitleInfo) {
-  console.log("showTranscript", subtitleInfo);
-  const { body: lines } = await fetch(
-    subtitleInfo.subtitle_url.replace(/^\/\//, "https://")
-  ).then((res) => res.json());
+  const { body: lines } = subtitleInfo;
   console.log("lines", lines);
   transcriptBox.innerHTML = "";
   for (let line of lines) {
@@ -134,39 +114,8 @@ async function showTranscript(subtitleInfo) {
   }
 }
 
-function getBvid(route /* : string|undefined */) {
-  let url;
-  if (route) {
-    url = new URL(window.location.origin + route);
-  } else {
-    url = new URL(window.location.href);
-  }
-  const bvid = url.pathname.match(/\/video\/(\w+)/)?.[1];
-  // if (!bvid) throw new Error("没有找到 bvid");
-  let curPage = url.searchParams.get("p") - 1;
-  if (!curPage || curPage == -1) {
-    curPage = 0;
-  }
-  return { bvid, curPage };
-}
-async function getTranscript(route /* : string|undefined */) {
-  const { bvid, curPage } = getBvid(route);
-  if (!bvid) throw new Error("没有找到 bvid");
-  const videoInfo = await request("/x/web-interface/view?bvid=" + bvid);
-  const {
-    subtitle: { subtitles = [] },
-  } = await request(
-    `/x/player/v2?aid=${videoInfo.aid}&cid=${videoInfo.pages[curPage].cid}`
-  );
-  console.log("subtitles", subtitles);
-  transcriptBox.innerHTML = "没有字幕";
-  if (subtitles.length == 0) throw new Error("没有字幕");
-  return subtitles;
-}
-
 async function main() {
   "use strict";
-  const subtitles = await getTranscript();
 
   // B站页面是SSR的，如果插入过早，页面 js 检测到实际 Dom 和期望 Dom 不一致，会导致重新渲染
   await waitForElementToExist("img.bili-avatar-img");
@@ -200,25 +149,39 @@ async function main() {
       }
     }
   });
-  await showTranscript(subtitles[0]);
   const danmukuBox = await waitForElementToExist("#danmukuBox");
   // B站页面是SSR的，如果插入过早，页面 js 检测到实际 Dom 和期望 Dom 不一致，会导致重新渲染
   danmukuBox.parentNode.insertBefore(transcriptBox, danmukuBox);
 }
 
 async function updateTranscript(route /* : string|undefined */) {
-  const subtitles = await getTranscript(route);
-  await showTranscript(subtitles[0]);
+  // await showTranscript();
 }
 
 main();
 
+function getBvid(route /* : string|undefined */) {
+  let url;
+  if (route) {
+    url = new URL(window.location.origin + route);
+  } else {
+    url = new URL(window.location.href);
+  }
+  const bvid = url.pathname.match(/\/video\/(\w+)/)?.[1];
+  // if (!bvid) throw new Error("没有找到 bvid");
+  let curPage = url.searchParams.get("p") - 1;
+  if (!curPage || curPage == -1) {
+    curPage = 0;
+  }
+  return { bvid, curPage };
+}
 function getCurrentState(route) {
   const { bvid, curPage } = getBvid(route);
   return `${bvid}?p=${curPage}`;
 }
 let lastState = getCurrentState();
 traceRoute();
+traceHttp();
 
 function traceRoute() {
   // popstate 可以监测到 hashchange
@@ -257,6 +220,26 @@ function traceRoute() {
     "replaceState",
     replacement
   );
+}
+
+function traceHttp() {
+  overrideMethod(XMLHttpRequest.prototype, "send", (originFn) => {
+    return function (
+      // this: XMLHttpRequest,
+      ...args /* : Parameters<XMLHttpRequest['send']> */
+    ) {
+      this.addEventListener("readystatechange", async () => {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.responseURL.startsWith("https://aisubtitle.hdslb.com")) {
+            const subtitleInfo = JSON.parse(this.responseText);
+            showTranscript(subtitleInfo);
+          }
+        }
+      });
+
+      return originFn.apply(this, args);
+    };
+  });
 }
 function overrideMethod /* <F extends Function> */(
   target /* : { [key: string]: any } */,
