@@ -9,7 +9,7 @@
 // @match        https://crowdin.com/translate/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=crowdin.com
 // @run-at       document-end
-// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
+// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@f59cc91442dd34eb28e0d270486da5c7ac8d2d50/shared/waitForElementToExist.js
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 

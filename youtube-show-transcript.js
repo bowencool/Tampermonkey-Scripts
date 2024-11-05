@@ -9,7 +9,7 @@
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/480993
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
-// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
+// @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@f59cc91442dd34eb28e0d270486da5c7ac8d2d50/shared/waitForElementToExist.js
 // @grant        none
 // ==/UserScript==
 
