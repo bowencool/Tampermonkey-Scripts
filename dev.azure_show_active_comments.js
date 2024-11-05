@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PR 默认显示 Active Comments
-// @version      0.1.2
+// @version      0.1.3
 // @description  默认显示 active comments，不用每次都点一下
 // @namespace    https://dev.azure.com/
 // @match        https://dev.azure.com/*/pullrequest/*
@@ -8,6 +8,7 @@
 // @author       bowencool
 // @license      MIT
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
 // @grant        none
 // ==/UserScript==
 
@@ -16,26 +17,6 @@
 
   function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
-  }
-
-  function waitForElementToExist(selector) {
-    return new Promise((resolve) => {
-      if (document.querySelector(selector)) {
-        return resolve(document.querySelector(selector));
-      }
-
-      const observer = new MutationObserver(() => {
-        if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector));
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(document.body, {
-        subtree: true,
-        childList: true,
-      });
-    });
   }
 
   const button = await waitForElementToExist(

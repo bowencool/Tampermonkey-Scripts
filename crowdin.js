@@ -2,35 +2,16 @@
 // @name         AI Translation on crowdin
 // @description  add extra buttons to translate with AI on crowdin, support DeepL X and OpenAI
 // @namespace    https://crowdin.com/
-// @version      0.3.1
+// @version      0.3.2
 // @author       bowencool
 // @license      MIT
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @match        https://crowdin.com/translate/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=crowdin.com
 // @run-at       document-end
+// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
-
-function waitForElementToExist(selector) {
-  return new Promise((resolve) => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector));
-    }
-
-    const observer = new MutationObserver(() => {
-      if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector));
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.body, {
-      subtree: true,
-      childList: true,
-    });
-  });
-}
 
 async function main() {
   const sourceContainer = await waitForElementToExist(

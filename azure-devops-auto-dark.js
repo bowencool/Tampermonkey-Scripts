@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Azure devops auto dark mode
-// @version      0.1.1
+// @version      0.1.2
 // @description  Automatically switch the dark mode according to the system settings, which uses the official style
 // @namespace    https://dev.azure.com/
 // @match        https://dev.azure.com/*
@@ -8,31 +8,12 @@
 // @author       bowencool
 // @license      MIT
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
+// @require      https://raw.githubusercontent.com/bowencool/Tampermonkey-Scripts/main/shared/waitForElementToExist.js
 // @grant        none
 // ==/UserScript==
 
 (function () {
   "use strict";
-
-  function waitForElementToExist(selector) {
-    return new Promise((resolve) => {
-      if (document.querySelector(selector)) {
-        return resolve(document.querySelector(selector));
-      }
-
-      const observer = new MutationObserver(() => {
-        if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector));
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(document.body, {
-        subtree: true,
-        childList: true,
-      });
-    });
-  }
 
   async function toggle(
     isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
