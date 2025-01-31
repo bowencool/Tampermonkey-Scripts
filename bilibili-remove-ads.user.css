@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         bilibili 自用去广告
-@version      0.1.8
+@version      0.1.9
 @description  B 站去广告
 @author       bowencool
 @license      MIT
@@ -23,8 +23,8 @@
   .video-page-special-card-small {
     display: none !important;
   }
-  /* 首页所有非视频卡片 */
-  :is(.bili-video-card, .feed-card, .floor-single-card):not(:has(a[href^="https://www.bilibili.com/video"]))
+  /* 所有非视频卡片 */
+  :is(.bili-video-card, .feed-card, .floor-single-card):not(:has(:is(a[href^="https://www.bilibili.com/video"], a[href^="//www.bilibili.com/list/watchlater"])))
   {
     display: none !important;
   }
