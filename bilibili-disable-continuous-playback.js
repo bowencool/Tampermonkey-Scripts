@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         禁止 Bilibili 连播
 // @name:en      Disable continuous playback for Bilibili
-// @version      1.0.0
+// @version      1.0.1
 // @description:en  Disable continuous playback for Bilibili video.
 // @description     禁止 Bilibili 视频的连续播放。
 // @namespace    https://bilibili.com/
@@ -14,6 +14,7 @@
 // @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@b65b677146fdf0d0af884371a943d7f4a65f6ec8/shared/waitForElementToExist.js
 // ==/UserScript==
 
-waitForElementToExist(".continuous-btn.on .switch-btn").then((el) =>
-  el.click()
-);
+// B站页面是SSR的，如果插入过早，页面 js 检测到实际 Dom 和期望 Dom 不一致，会导致重新渲染
+await waitForElementToExist("img.bili-avatar-img");
+const el = await waitForElementToExist(".continuous-btn .switch-btn.on");
+el.click();
