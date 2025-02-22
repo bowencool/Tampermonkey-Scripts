@@ -12,7 +12,6 @@
 // @homepageURL  https://greasyfork.org/scripts/482165
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @require      https://cdn.jsdelivr.net/gh/bowencool/Tampermonkey-Scripts@b65b677146fdf0d0af884371a943d7f4a65f6ec8/shared/waitForElementToExist.js
-// @grant        GM_addStyle
 // ==/UserScript==
 
 waitForElementToExist(".continuous-btn.on .switch-btn").then((el) =>
