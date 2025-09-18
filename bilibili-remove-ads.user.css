@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         bilibili 自用去广告
-@version      0.1.10
+@version      0.1.11
 @description  B 站去广告
 @author       bowencool
 @license      MIT
@@ -16,6 +16,7 @@
   [role="caption"] {
     user-select: text !important;
   }
+  .bpx-player-translation-feedback-modal,
   .pop-live-small-mode,
   [data-loc-id],
   /*.bili-vote.bili-show,  投票 */
