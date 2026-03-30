@@ -2,14 +2,14 @@
 // @name         Copy link as
 // @description  Copy current page link as markdown/html/docx format
 // @namespace    all
-// @version      1.0.0
+// @version      1.0.1
 // @author       bowencool
 // @match        *://*/*
 // @icon         https://i.imgur.com/TuVUZlQ.png
 // @grant        GM_registerMenuCommand
 // @grant        GM_setClipboard
 // @license      MIT
-// @homepageURL  https://greasyfork.org/scripts/447649
+// @homepageURL  https://greasyfork.org/en/scripts/571737
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @run-at       document-end
 // ==/UserScript==
