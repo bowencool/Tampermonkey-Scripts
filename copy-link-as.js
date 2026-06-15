@@ -2,7 +2,7 @@
 // @name         Copy link as
 // @description  Copy current page link as markdown/html/docx format
 // @namespace    all
-// @version      1.0.1
+// @version      1.0.2
 // @author       bowencool
 // @match        *://*/*
 // @icon         https://i.imgur.com/TuVUZlQ.png
@@ -18,21 +18,21 @@
   "use strict";
 
   GM_registerMenuCommand("Copy link as markdown format", function (event) {
-    GM_setClipboard(`[${document.title}](${location.href})`, "text")
+    GM_setClipboard(`[${top.document.title}](${top.location.href})`, "text")
   }, {
     accessKey: "md",
     autoClose: true
   });
 
   GM_registerMenuCommand("Copy link as html format", function (event) {
-    GM_setClipboard(`<a href="${location.href}">${document.title}</a>`, "text")
+    GM_setClipboard(`<a href="${top.location.href}">${top.document.title}</a>`, "text")
   }, {
     accessKey: "html",
     autoClose: true
   });
 
   GM_registerMenuCommand("Copy link as word(docx) format", function (event) {
-    GM_setClipboard(`<a href="${location.href}">${document.title}</a>`, "html")
+    GM_setClipboard(`<a href="${top.location.href}">${top.document.title}</a>`, "html")
   }, {
     accessKey: "rich",
     autoClose: true
