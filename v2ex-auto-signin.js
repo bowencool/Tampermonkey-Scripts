@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         V2EX 自动签到
-// @version      1.0.0
+// @version      1.0.1
 // @description  每天按 UTC 日期自动领取 V2EX 每日登录奖励。
 // @namespace    https://www.v2ex.com/
 // @match        https://v2ex.com/*
@@ -8,7 +8,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=v2ex.com
 // @author       bowencool
 // @license      MIT
-// @homepageURL  https://github.com/bowencool/Tampermonkey-Scripts
+// @homepageURL  https://greasyfork.org/scripts/584290
 // @supportURL   https://github.com/bowencool/Tampermonkey-Scripts/issues
 // @run-at       document-end
 // @grant        none
