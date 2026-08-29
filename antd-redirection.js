@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         antd redirection
+// @name         antd 官网重定向到国内镜像
 // @description  重定向到国内镜像
 // @namespace    antd
-// @version      1.0.2
+// @version      1.0.3
 // @author       bowencool
 // @match        https://ant.design/*
 // @icon         https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg
