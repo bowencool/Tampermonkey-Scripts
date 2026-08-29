@@ -1,12 +1,13 @@
 // ==UserScript==
-// @name         Copy link as
+// @name         Copy link as / 复制链接为指定格式
+// @name:en      Copy link as
 // @name:zh-CN   复制链接为指定格式
 // @name:zh-HK   複製連結為指定格式
 // @description  Copy current page link as markdown/html/docx format
 // @description:zh-CN  将当前页面链接复制为 Markdown、HTML 或 Word（DOCX）格式
 // @description:zh-HK  將目前頁面的連結複製為 Markdown、HTML 或 Word（DOCX）格式
 // @namespace    all
-// @version      1.1.0
+// @version      1.1.1
 // @author       bowencool
 // @match        *://*/*
 // @icon         https://i.imgur.com/TuVUZlQ.png
