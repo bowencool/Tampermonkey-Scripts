@@ -1,1 +1,1 @@
-see https://greasyfork.org/users/934185
+see https://greasyfork.org/users/934185 and https://scriptcat.org/zh-CN/users/212365
