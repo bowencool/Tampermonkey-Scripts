@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         滴答清单自动深色模式
-// @version      1.0.7
+// @version      1.0.8
 // @description  根据系统设置自动切换深色模式，深色用的是官方的样式
 // @namespace    https://dida365.com/
 // @match        https://dida365.com/webapp*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=dida365.com
+// @icon         https://cncdn.dida365.com/web/static/img/apple-touch-icon-76x76.png
 // @author       bowencool
 // @license      MIT
 // @homepageURL  https://greasyfork.org/scripts/447649
