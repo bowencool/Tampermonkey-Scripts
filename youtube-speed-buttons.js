@@ -1,12 +1,11 @@
 // ==UserScript==
-// @name         YouTube Playback Speed Buttons / YouTube 播放速度按钮
-// @name:en      YouTube Playback Speed Buttons
+// @name         YouTube Playback Speed Buttons
 // @name:zh-CN   YouTube 播放速度按钮
 // @name:zh-HK   YouTube 播放速度按鈕
 // @description  Adds playback speed buttons to youtube player control bar.
 // @description:zh-CN  在 YouTube 播放器控制栏中添加播放速度按钮。
 // @description:zh-HK  在 YouTube 播放器控制列中加入播放速度按鈕。
-// @version      1.1.1
+// @version      1.1.2
 // @license      MIT
 // @author       bowencool
 // @match        https://www.youtube.com/*
